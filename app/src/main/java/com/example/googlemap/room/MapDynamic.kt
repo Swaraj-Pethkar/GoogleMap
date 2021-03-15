@@ -50,10 +50,12 @@ class MapDynamic : AppCompatActivity(), OnMapReadyCallback {
         // Add a marker in Sydney and move the camera
         val location = LatLng(doubleLatitude, doubleLongitude)
         val toLocation = LatLng(doubleToLatitude, doubleToLongitude)
-        val snippet: String = "Name:$name Email:$email Phone Number:$phoneNumber Address:$address"
+        val snippet: String = " Name:$name\n Email:$email\n Phone Number:$phoneNumber\n Address:$address"
 
         mMap.addMarker(MarkerOptions().position(location).title("ID:$id").snippet(snippet))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 10f))
+
+        mMap.setInfoWindowAdapter(CustomInfoWindowAdapter(applicationContext))
 
         mMap.addCircle(
             CircleOptions()
